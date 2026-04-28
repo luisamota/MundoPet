@@ -1,0 +1,259 @@
+@import url(https://fonts.google.com/specimen/Lilita+One?selected=Material+Symbols+Outlined:dashboard:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%231f1f1f&preview.layout=grid&preview.script=Latn&query=Montserrat);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lilita One', cursive;
+}
+
+h1 {
+    font-family: 'Lilita One', cursive;
+    color: white;
+    font-size: 30px;
+    margin-left: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+}
+
+nav ul a {
+
+    font-family: 'Lilita One', cursive;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+h2 {
+    font-family: 'Lilita One', cursive;
+    color: white;
+    font-size: 30px;
+    transform: translateY(50%);
+    margin-left: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+p {
+    font-size: 20px;
+    color: white;
+    margin: 0PX;
+    padding: 10px;
+    transform: translateY(65%);
+    margin-left: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    background-color: #0B4B99;
+    position: relative;
+    height: 500px;
+}
+
+input {
+    background-color: #FF6B35;
+    border: none;
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px 20px;
+    transform: translateY(80%);
+    margin-left: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.container {
+    justify-content: flex-end;
+    /* alinha os itens à direita */
+    display: flex;
+    margin-right: 170px;
+    transform: translateY(-50%);
+    z-index: 1;
+
+}
+
+img {
+    width: 350px;
+    height: auto;
+}
+
+
+.containerP img {
+    width: 350px;
+    height: auto;
+    transform: translateY(-100%);
+    z-index: 0;
+    position: relative;
+}
+
+.containerlP img{
+    justify-content: flex-end;
+    display: flex;
+    width: 350px;
+    height: auto;
+    transform: translateY(-250%);
+}
+
+.containerlP {
+    justify-content: flex-end;
+    display: flex;
+}
+
+.carousel {
+    width: 100%;
+    display: flex;
+    transform: translateY(-25%);
+    overflow: hidden;
+}
+
+
+
+.card img {
+    width: 850px;
+    display: block;
+}
+
+.group {
+    display: flex;
+    gap: 1em;
+    animation: slide 15s linear infinite;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+
+/*Mobile*/
+@media (max-width:430px) {
+    .header {
+        background-color: #0B4B99;
+        height: 400px;
+    }
+
+    #metade {
+        transform: translateY(10%);
+    }
+    .navegacao {
+    position: relative;
+        z-index: 2;
+    }
+
+    h1 {
+        font-size: 20px;
+        font-family: 'Lilita One', cursive;
+        color: white;
+        position: relative;
+        z-index: 2;
+        margin-left: 20px;
+    }
+
+    h2 {
+        font-size: 20px;
+        font-family: 'Lilita One', cursive;
+        color: white;
+        position: relative;
+        z-index: 2;
+        margin-left: 20px;
+    }
+
+    p {
+        font-size: 15px;
+        font-family: 'Lilita One', cursive;
+        color: white;
+        position: relative;
+        z-index: 2;
+        margin-left: 10px;
+    }
+
+    input {
+        background-color: #FF6B35;
+        border: none;
+        color: white;
+        border-radius: 15px;
+        text-align: center;
+        font-size: 14px;
+        padding: 10px 20px;
+        transform: translateY(100%);
+        position: relative;
+        z-index: 2;
+        margin-left: 20px;
+    }
+
+
+    .container {
+        justify-content: flex-end;
+        display: flex;
+        width: 100%;
+    }
+
+    #ImgDog img {
+        width: 200px;
+        height: auto;
+        transform: translateY(50%);
+    }
+
+
+
+    .containerP img {
+        width: 200px;
+        height: auto;
+        transform: translateY(-100%);
+        position: absolute;
+        z-index: 1;
+    }
+
+    .carousel {
+        width: 100%;
+        display: flex;
+        transform: translateY(5%);
+        overflow: hidden;
+    }
+
+
+    .card img {
+        width: 450px;
+        display: block;
+    }
+
+    .group {
+        display: flex;
+        gap: 1em;
+        animation: slide 10s linear infinite;
+    }
+
+    .carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+    @keyframes slide {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
+    }
+}

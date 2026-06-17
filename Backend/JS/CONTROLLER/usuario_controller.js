@@ -4,9 +4,8 @@ const service = require('../MODEL/service/usuario_service');
 
 exports.cadastroUsuario = async (req, res) => {
     try {
-        const { email, nomePet, senha } = req.body;
-        const resultado = await service.cadastrar(email, nomePet, senha);
-        
+        const { email, especie, raca, nomePet, senha } = req.body;
+        const resultado = await service.cadastrar(email, especie, raca, nomePet, senha);
         res.status(201).json(resultado);
     } catch (err) {
         res.status(400).json({ erro: err.message });
@@ -15,8 +14,8 @@ exports.cadastroUsuario = async (req, res) => {
 
 exports.cadastroAdmin = async (req, res) => {
     try {
-        const { email, nomePet, senha } = req.body;
-        const resultado = await service.cadastrarAdmin(email, nomePet, senha);
+        const { email, especie, raca, nomePet, senha } = req.body;
+        const resultado = await service.cadastrarAdmin(email, especie, raca, nomePet, senha);
         
         res.status(201).json(resultado);
     } catch (err) {

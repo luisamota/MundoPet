@@ -11,10 +11,12 @@ exports.listar = async () => {
 exports.cadastroUsuario = async (usuario) => {
     const tipoFinal = usuario.tipo || 'usuario';
 
-    const sql = "INSERT INTO Usuarios (email, nomePet, senha, tipo) VALUES (?, ?, ?, ?)";
+    const sql = "INSERT INTO Usuarios (email, especie, raca, nomePet, senha, tipo) VALUES (?, ?, ?, ?, ?, ?)";
     
     const [resultado] = await conexao.promise().query(sql, [
         usuario.email, 
+        usuario.especie,
+        usuario.raca,
         usuario.nomePet, 
         usuario.senha, 
         tipoFinal

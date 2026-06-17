@@ -5,7 +5,13 @@ const repo = require('../repositories/usuario_repositorio');
 const jwt = require('jsonwebtoken');
 
 
-exports.cadastrar = async (email, nomePet, senha, tipo = 'usuario') => {
+exports.cadastrar = async (email, especie, raca, nomePet, senha, tipo = 'usuario') => {
+
+    const especieAnimal = ['cachorro', 'gato'];
+
+    if (!especie || !especieAnimal.includes(especie.toLowerCase())){
+        throw new Error('Por favor, selecione se o seu pet é um cachorro ou um gato.')
+    }
 
     const jaExiste = await repo.buscarPorEmail(email);
     if (jaExiste) throw new Error('Este e-mail já está cadastrado');
@@ -15,6 +21,8 @@ exports.cadastrar = async (email, nomePet, senha, tipo = 'usuario') => {
     await repo.cadastroUsuario({
         email,
         nomePet,
+        especie:especie.toLowerCase(),
+        raca,
         senha: senhaCriptografada,
         tipo
     });
@@ -23,7 +31,13 @@ exports.cadastrar = async (email, nomePet, senha, tipo = 'usuario') => {
 };
 
 
-exports.cadastrarAdmin = async (email, nomePet, senha) => {
+exports.cadastrarAdmin = async (email, especie, raca, nomePet, senha) => {
+    const especieAnimal = ['cachorro', 'gato'];
+
+    if (!especie || !especieAnimal.includes(especie.toLowerCase())){
+        throw new Error('Por favor, selecione se o seu pet é um cachorro ou um gato.')
+    }
+
     const jaExiste = await repo.buscarPorEmail(email);
     if (jaExiste) throw new Error('Este e-mail já está cadastrado');
 
@@ -32,6 +46,8 @@ exports.cadastrarAdmin = async (email, nomePet, senha) => {
     await repo.cadastroUsuario({
         email,
         nomePet,
+        especie:especie.toLowerCase(),
+        raca,
         senha: senhaCriptografada,
         tipo: 'admin' 
     });

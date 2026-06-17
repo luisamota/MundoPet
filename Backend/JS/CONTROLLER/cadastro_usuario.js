@@ -1,18 +1,27 @@
-var btnCadastrar = document.getElementById("btnCadastro");
+var btnCadastrar = document.getElementById("btn-cadastrar");
 
 btnCadastrar.addEventListener("click", function (event) {
     event.preventDefault();
 
     var frmCadastro = document.querySelector("#frmCadastro");
 
-    if (validacao_Usuario(frmCadastro) === false) {
+    //if (validacao_Usuario(frmCadastro) === false) {
+        //return;
+    //}
+    const especieSalva = localStorage.getItem("especieSelecionada");
+
+    if (!especieSalva) {
+        alert("Por favor, selecione se o seu pet é um cachorro ou um gato antes de preencher o cadastro.");
+        window.location.href = "../HTML/registerCatDog.html";
         return;
     }
 
     var usuario = {
         email: frmCadastro.querySelector("#email").value,
-        nomePet: frmCadastro.querySelector("#nomePet").value,
-        senha: frmCadastro.querySelector("#confirmSenha").value 
+        nomePet: frmCadastro.querySelector("#petName").value,
+        especie: especieSalva,
+        raca: frmCadastro.querySelector("#breed").value,
+        senha: frmCadastro.querySelector("#confirm-password").value 
     };
 
     fetch("http://localhost:3000/usuario", {
@@ -25,7 +34,6 @@ btnCadastrar.addEventListener("click", function (event) {
     .then(async response => {
         if (!response.ok) {
             const dadosErro = await response.json();
-            // Lança o erro com a mensagem vinda lá do seu Service/Banco
             throw new Error(dadosErro.erro || "Erro ao cadastrar usuário");
         }
         return response.json();
@@ -36,6 +44,9 @@ btnCadastrar.addEventListener("click", function (event) {
         alert(dados.mensagem); 
         
         frmCadastro.reset(); 
+        
+        // 3. LIMPEZA: Remove da gaveta para ficar limpo para os próximos cadastros no site
+        localStorage.removeItem("especieSelecionada");
     })
     .catch(error => {
         console.error(error);

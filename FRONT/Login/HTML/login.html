@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/login.css">
     <script src="../JS/login.js" defer></script>
+    <script src="/JS/CONTROLLER/login_usuario.js" defer></script>
 </head>
 <body>
 
@@ -15,7 +16,7 @@
 
         <h1>Login</h1>
 
-        <form>
+        <form id="frmLogin">
             <div class="input-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" required>
@@ -30,7 +31,7 @@
                 <a href="#">Esqueceu sua senha?</a>
             </div>
 
-            <button type="submit" class="btn-login">Logar</button>
+            <button type="submit" class="btn-login" id="btn-login">Logar</button>
         </form>
 
         <div class="signup-text">

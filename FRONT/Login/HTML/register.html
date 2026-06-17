@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/register.css">
     <script src="../JS/register.js" defer></script>
+    <script src="/JS/CONTROLLER/cadastro_usuario.js" defer></script>
 </head>
 <body>
 
@@ -15,7 +16,7 @@
 
         <h1>Cadastro</h1>
 
-        <form>
+        <form id="frmCadastro">
             <div class="input-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" required>
@@ -23,7 +24,7 @@
 
             <div class="input-group">
                 <label for="pet-name">Nome Pet</label>
-                <input type="text" id="pet-name" required>
+                <input type="text" id="petName" required>
             </div>
 
             <div class="input-group">

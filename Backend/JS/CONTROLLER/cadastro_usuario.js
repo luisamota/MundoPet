@@ -1,6 +1,7 @@
 // JS/CONTROLLER/cadastro_usuario.js
 
 var btnCadastrar = document.getElementById("btn-cadastrar");
+const baseUrl = "https://mundopet.onrender.com/"
 
 btnCadastrar.addEventListener("click", function (event) {
     event.preventDefault();
@@ -31,7 +32,7 @@ btnCadastrar.addEventListener("click", function (event) {
         senha: frmCadastro.querySelector("#confirm-password").value
     };
 
-    fetch("http://localhost:3000/usuario", {
+    fetch(`${baseUrl}usuario`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

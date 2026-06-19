@@ -16,7 +16,8 @@ formulario.addEventListener('submit', (event) => {
     
     alert("Cadastro efetuado com sucesso!");
     
-    window.location.href = "index.html"; // Substitua pelo nome real da sua página home/inicial
+
+    window.location.href = "../../PetShop.html";
 });
 
 // 3. Evento ao clicar no "X" (Redireciona para a página de seleção de cão/gato)

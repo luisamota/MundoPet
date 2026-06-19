@@ -1,3 +1,5 @@
+// JS/CONTROLLER/cadastro_usuario.js
+
 var btnCadastrar = document.getElementById("btn-cadastrar");
 
 btnCadastrar.addEventListener("click", function (event) {
@@ -5,9 +7,14 @@ btnCadastrar.addEventListener("click", function (event) {
 
     var frmCadastro = document.querySelector("#frmCadastro");
 
-    //if (validacao_Usuario(frmCadastro) === false) {
-        //return;
-    //}
+    const emailValor = frmCadastro.querySelector("#email").value;
+    const resultadoEmail = validarEmail(emailValor);
+
+    if (!resultadoEmail.valido) {
+        alert(resultadoEmail.mensagem);
+        return;
+    }
+
     const especieSalva = localStorage.getItem("especieSelecionada");
 
     if (!especieSalva) {
@@ -17,11 +24,11 @@ btnCadastrar.addEventListener("click", function (event) {
     }
 
     var usuario = {
-        email: frmCadastro.querySelector("#email").value,
+        email: emailValor,
         nomePet: frmCadastro.querySelector("#petName").value,
         especie: especieSalva,
         raca: frmCadastro.querySelector("#breed").value,
-        senha: frmCadastro.querySelector("#confirm-password").value 
+        senha: frmCadastro.querySelector("#confirm-password").value
     };
 
     fetch("http://localhost:3000/usuario", {
@@ -40,16 +47,12 @@ btnCadastrar.addEventListener("click", function (event) {
     })
     .then(dados => {
         console.log("Usuário salvo no banco:", dados);
-        
-        alert(dados.mensagem); 
-        
-        frmCadastro.reset(); 
-        
-        // 3. LIMPEZA: Remove da gaveta para ficar limpo para os próximos cadastros no site
+        alert(dados.mensagem);
+        frmCadastro.reset();
         localStorage.removeItem("especieSelecionada");
     })
     .catch(error => {
         console.error(error);
-        alert(error.message); 
+        alert(error.message);
     });
 });

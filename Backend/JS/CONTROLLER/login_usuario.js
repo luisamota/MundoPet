@@ -1,3 +1,5 @@
+const baseUrl = "https://mundopet.onrender.com/"
+
 var btnLogin = document.getElementById("btn-login");
 btnLogin.addEventListener("click", function (event) {
     event.preventDefault();
@@ -13,7 +15,7 @@ btnLogin.addEventListener("click", function (event) {
         return;
     }
 
-    fetch("http://localhost:3000/login", {
+    fetch(`${baseUrl}login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

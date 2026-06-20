@@ -1,7 +1,4 @@
-// JS/CONTROLLER/cadastro_usuario.js
-
 var btnCadastrar = document.getElementById("btn-cadastrar");
-const baseUrl = "https://mundopet.onrender.com/"
 
 btnCadastrar.addEventListener("click", function (event) {
     event.preventDefault();

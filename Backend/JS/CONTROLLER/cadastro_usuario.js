@@ -23,6 +23,7 @@ btnCadastrar.addEventListener("click", function (event) {
 
     var usuario = {
         email: emailValor,
+        nome: frmCadastro.querySelector("#tutor-name").value,
         nomePet: frmCadastro.querySelector("#petName").value,
         especie: especieSalva,
         raca: frmCadastro.querySelector("#breed").value,

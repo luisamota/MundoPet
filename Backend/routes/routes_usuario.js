@@ -9,6 +9,6 @@ router.post("/admin/cadastro", usuarioController.cadastroAdmin);
 router.post("/login", usuarioController.login);
 router.post("/admin/login", usuarioController.loginAdmin);
 router.get("/", usuarioController.listarTodos);
-router.delete("/admin/excluir/:id", verificarAdmin, usuarioController.excluirUsuario);
+router.delete("/admin/excluir/:id", verificarAdmin, usuarioController.excluirUsuario);a
 
 module.exports = router;

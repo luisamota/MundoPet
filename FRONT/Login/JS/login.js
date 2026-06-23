@@ -1,4 +1,4 @@
-import { baseUrl } from '../../../Backend/JS/MODEL/config';
+import { baseUrl } from "../JS/config";
 
 document.addEventListener("DOMContentLoaded", () => {
     const formLogin = document.querySelector("form");

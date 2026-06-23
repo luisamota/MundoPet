@@ -1,3 +1,6 @@
+// 1. IMPORTANTE: Adicionamos a importação da URL do Render bem na primeira linha
+import { baseUrl } from './config.js';
+
 var btnCadastrar = document.getElementById("btn-cadastrar");
 
 btnCadastrar.addEventListener("click", function (event) {
@@ -30,7 +33,9 @@ btnCadastrar.addEventListener("click", function (event) {
         senha: frmCadastro.querySelector("#confirm-password").value
     };
 
-    fetch(getBaseUrl() + "/usuario/cadastrar", {
+    // 2. MUDANÇA AQUI: Tiramos o 'getBaseUrl()' e usamos o `${baseUrl}` direto.
+    // Agora o JavaScript vai juntar "https://mundopet.onrender.com" com "/usuario/cadastrar"
+    fetch(`${baseUrl}/usuario/cadastrar`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

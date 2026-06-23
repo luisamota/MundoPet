@@ -1,25 +1,21 @@
 const conexao = require("../../database/conexao");
 
-
 exports.listar = async () => {
-    const sql = "SELECT id_usuarios, email, nomePet, tipo FROM Usuarios";
+    const sql = "SELECT id_usuarios, email, nome_usuario, nomePet FROM Usuarios";
     const [rows] = await conexao.promise().query(sql);
     return rows;
 };
 
-
 exports.cadastroUsuario = async (usuario) => {
-    const tipoFinal = usuario.tipo || 'usuario';
-
-    const sql = "INSERT INTO Usuarios (email, especie, raca, nomePet, senha, tipo) VALUES (?, ?, ?, ?, ?, ?)";
+    const sql = "INSERT INTO Usuarios (email, nome_usuario, nomePet, especie, raca, senha) VALUES (?, ?, ?, ?, ?, ?)";
     
     const [resultado] = await conexao.promise().query(sql, [
-        usuario.email, 
+        usuario.email,
+        usuario.nome_usuario,
+        usuario.nomePet,
         usuario.especie,
         usuario.raca,
-        usuario.nomePet, 
-        usuario.senha, 
-        tipoFinal
+        usuario.senha
     ]);
     
     return resultado;
@@ -41,4 +37,22 @@ exports.excluir = async (id) => {
     const sql = "DELETE FROM Usuarios WHERE id_usuarios = ?";
     const [resultado] = await conexao.promise().query(sql, [id]);
     return resultado;
+};
+
+exports.cadastroAdmin = async (admin) => {
+    const sql = "INSERT INTO Admin (email_admin, nome_admin, senha_admin) VALUES (?, ?, ?)";
+    
+    const [resultado] = await conexao.promise().query(sql, [
+        admin.email_admin,
+        admin.nome_admin,
+        admin.senha_admin
+    ]);
+    
+    return resultado;
+};
+
+exports.buscarAdminPorEmail = async (email_admin) => {
+    const sql = "SELECT * FROM Admin WHERE email_admin = ?";
+    const [rows] = await conexao.promise().query(sql, [email_admin]);
+    return rows[0];
 };

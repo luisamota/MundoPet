@@ -1,33 +1,83 @@
+import { baseUrl } from './config.js';
+
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Seleção dos elementos (Certifique-se de que os IDs batem com o seu HTML de login)
     const formLogin = document.querySelector("form");
-    const btnFechar = document.getElementById("btn-fechar");
+    const btnFechar = document.querySelector(".close-btn");
     const linkCadastreSe = document.getElementById("link-cadastro");
 
-    // 2. Evento ao clicar no "X" (Redireciona para a página de seleção Cat/Dog)
     if (btnFechar) {
         btnFechar.addEventListener("click", () => {
             window.location.href = "../HTML/home.html";
         });
     }
 
-    // 3. Evento ao clicar no botão "Logar" (Envio do formulário)
-    if (formLogin) {
-        formLogin.addEventListener("submit", (event) => {
-            event.preventDefault(); // Impede o recarregamento automático da página
-            
-            // Se quiser, no futuro você pode colocar validações de login aqui
-            
-            // Retorna para a página home
-            window.location.href = "index.html"; // Caso o index esteja na mesma pasta do login. Se estiver fora, use ../index.html
+    if (linkCadastreSe) {
+        linkCadastreSe.addEventListener("click", (event) => {
+            event.preventDefault();
+            window.location.href = "../HTML/registerCatDog.html";
         });
     }
 
-    // 4. Evento ao clicar em "Cadastre-se"
-    if (linkCadastreSe) {
-        linkCadastreSe.addEventListener("click", (event) => {
-            event.preventDefault(); // Evita o comportamento padrão do link
-            window.location.href = "../HTML/registerCatDog.html";
+    if (formLogin) {
+        formLogin.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const senha = document.getElementById("password").value;
+
+            try {
+                const resposta = await fetch(`${baseUrl}/usuarios/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, senha })
+                });
+
+                const dados = await resposta.json();
+
+                if (!resposta.ok) {
+                    alert(dados.erro || "Erro ao fazer login.");
+                    return;
+                }
+
+                // Salva o id temporariamente pra usar na verificação
+                localStorage.setItem("id_usuarios_temp", dados.id_usuarios);
+
+                // Pede o código que foi enviado pro email
+                const codigo = prompt("Digite o código enviado para o seu email:");
+
+                if (!codigo) {
+                    alert("Código não informado.");
+                    return;
+                }
+
+                const respostaVerificacao = await fetch(`${baseUrl}/usuarios/verificar-codigo`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ 
+                        id_usuarios: dados.id_usuarios, 
+                        codigo 
+                    })
+                });
+
+                const dadosVerificacao = await respostaVerificacao.json();
+
+                if (!respostaVerificacao.ok) {
+                    alert(dadosVerificacao.erro || "Código inválido.");
+                    return;
+                }
+
+                // Login completo! Salva o token e redireciona
+                localStorage.setItem("token", dadosVerificacao.token);
+                localStorage.setItem("id_usuarios", dadosVerificacao.id_usuarios);
+                localStorage.setItem("nomePet", dadosVerificacao.nomePet);
+                localStorage.removeItem("id_usuarios_temp");
+
+                window.location.href = "index.html";
+
+            } catch (erro) {
+                console.error("Erro:", erro);
+                alert("Erro de conexão com o servidor.");
+            }
         });
     }
 });

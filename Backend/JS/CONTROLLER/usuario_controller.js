@@ -34,6 +34,17 @@ exports.login = async (req, res) => {
 };
 
 
+exports.verificarCodigo = async (req, res) => {
+    try {
+        const { id_usuarios, codigo } = req.body;
+        const resultado = await service.verificarCodigo(id_usuarios, codigo);
+        res.status(200).json(resultado);
+    } catch (err) {
+        res.status(401).json({ erro: err.message });
+    }
+};
+
+
 exports.loginAdmin = async (req, res) => {
     try {
         const { email_admin, senha_admin } = req.body;

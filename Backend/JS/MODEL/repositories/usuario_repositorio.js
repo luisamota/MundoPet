@@ -56,3 +56,14 @@ exports.buscarAdminPorEmail = async (email_admin) => {
     const [rows] = await conexao.promise().query(sql, [email_admin]);
     return rows[0];
 };
+
+exports.salvarCodigo = async (id, codigo, expira) => {
+    const sql = "UPDATE Usuarios SET codigo_2fa = ?, codigo_expira = ? WHERE id_usuarios = ?";
+    await conexao.promise().query(sql, [codigo, expira, id]);
+};
+
+exports.buscarCodigoPorId = async (id) => {
+    const sql = "SELECT codigo_2fa, codigo_expira FROM Usuarios WHERE id_usuarios = ?";
+    const [rows] = await conexao.promise().query(sql, [id]);
+    return rows[0];
+};

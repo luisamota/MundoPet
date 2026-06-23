@@ -30,7 +30,7 @@ btnCadastrar.addEventListener("click", function (event) {
         senha: frmCadastro.querySelector("#confirm-password").value
     };
 
-    fetch(getBaseUrl() + "/usuario", {
+    fetch(getBaseUrl() + "/usuario/cadastrar", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

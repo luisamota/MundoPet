@@ -1,6 +1,5 @@
 const service = require('../MODEL/service/usuario_service');
 
-
 exports.cadastroUsuario = async (req, res) => {
     try {
         const { email, nome_usuario, nomePet, especie, raca, senha } = req.body;
@@ -10,7 +9,6 @@ exports.cadastroUsuario = async (req, res) => {
         res.status(400).json({ erro: err.message });
     }
 };
-
 
 exports.cadastroAdmin = async (req, res) => {
     try {
@@ -22,7 +20,6 @@ exports.cadastroAdmin = async (req, res) => {
     }
 };
 
-
 exports.login = async (req, res) => {
     try {
         const { email, senha } = req.body;
@@ -32,18 +29,6 @@ exports.login = async (req, res) => {
         res.status(401).json({ erro: err.message });
     }
 };
-
-
-exports.verificarCodigo = async (req, res) => {
-    try {
-        const { id_usuarios, codigo } = req.body;
-        const resultado = await service.verificarCodigo(id_usuarios, codigo);
-        res.status(200).json(resultado);
-    } catch (err) {
-        res.status(401).json({ erro: err.message });
-    }
-};
-
 
 exports.loginAdmin = async (req, res) => {
     try {
@@ -55,7 +40,6 @@ exports.loginAdmin = async (req, res) => {
     }
 };
 
-
 exports.listarTodos = async (req, res) => {
     try {
         const usuarios = await service.listarTodos();
@@ -64,7 +48,6 @@ exports.listarTodos = async (req, res) => {
         res.status(500).json({ erro: err.message });
     }
 };
-
 
 exports.excluirUsuario = async (req, res) => {
     try {

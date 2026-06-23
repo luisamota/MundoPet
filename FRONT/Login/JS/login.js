@@ -1,4 +1,4 @@
-import { baseUrl } from './config.js';
+import { baseUrl } from '../../../Backend/JS/MODEL/config';
 
 document.addEventListener("DOMContentLoaded", () => {
     const formLogin = document.querySelector("form");
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const senha = document.getElementById("password").value;
 
             try {
-                const resposta = await fetch(`${baseUrl}/usuarios/login`, {
+                const resposta = await fetch(`${baseUrl}/usuario/login`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email, senha })
@@ -39,38 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-                // Salva o id temporariamente pra usar na verificação
-                localStorage.setItem("id_usuarios_temp", dados.id_usuarios);
-
-                // Pede o código que foi enviado pro email
-                const codigo = prompt("Digite o código enviado para o seu email:");
-
-                if (!codigo) {
-                    alert("Código não informado.");
-                    return;
-                }
-
-                const respostaVerificacao = await fetch(`${baseUrl}/usuarios/verificar-codigo`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ 
-                        id_usuarios: dados.id_usuarios, 
-                        codigo 
-                    })
-                });
-
-                const dadosVerificacao = await respostaVerificacao.json();
-
-                if (!respostaVerificacao.ok) {
-                    alert(dadosVerificacao.erro || "Código inválido.");
-                    return;
-                }
-
-                // Login completo! Salva o token e redireciona
-                localStorage.setItem("token", dadosVerificacao.token);
-                localStorage.setItem("id_usuarios", dadosVerificacao.id_usuarios);
-                localStorage.setItem("nomePet", dadosVerificacao.nomePet);
-                localStorage.removeItem("id_usuarios_temp");
+                localStorage.setItem("token", dados.token);
+                localStorage.setItem("id_usuarios", dados.id_usuarios);
+                localStorage.setItem("nomePet", dados.nomePet);
 
                 window.location.href = "index.html";
 

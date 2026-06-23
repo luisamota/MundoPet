@@ -1,0 +1,196 @@
+/* =========================
+   IMPORTS (FONTS)
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Kavoon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+
+/* =========================
+   RESET / BASE
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lilita One', cursive;
+}
+
+body {
+  background: #fff;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+.header {
+  position: absolute;
+  width: 100%;
+  padding: 20px 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: white;
+}
+
+.header h1 {
+  font-family: "Kavoon", serif;
+}
+
+.header ul {
+  display: flex;
+  gap: 90px;
+  list-style: none;
+  font-size: 20px;
+}
+
+.header nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  text-decoration: none;
+}
+
+
+/* =========================
+   ELEMENTOS GERAIS
+========================= */
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.container h2 {
+  max-width: 320px;
+}
+
+.title {
+  position: relative;
+  z-index: 2;
+  font-size: 2.1875rem;
+}
+
+
+/* =========================
+   SEÇÕES (DOG & CAT)
+========================= */
+.classe-dog,
+.classe-cat {
+  position: relative;
+  height: 432px;
+  display: flex;
+  align-items: center;
+  padding: 80px;
+  color: white;
+}
+
+.classe-dog {
+  background: #F59E0B;
+}
+
+.classe-cat {
+  background: #A78BFA;
+}
+
+
+/* =========================
+   TEXTOS DAS SEÇÕES
+========================= */
+.classe-dog h2,
+.classe-cat h2 {
+  font-family: "Kavoon", serif;
+  font-size: 38px;
+}
+
+.classe-dog p,
+.classe-cat p {
+  margin-top: 10px;
+}
+
+
+/* =========================
+   IMAGENS (DOG)
+========================= */
+.dog1 {
+  position: absolute;
+  top: 227px;
+  width: 900px;
+  z-index: 3;
+}
+
+
+/* =========================
+   IMAGENS (CAT)
+========================= */
+.cat1 {
+  position: relative;
+  margin-left: 220px;
+  width: 700px;
+  bottom: -142px;
+  z-index: 1;
+}
+
+
+/* =========================
+   DECORAÇÕES (PATAS)
+========================= */
+.patasLeft,
+.patasRight {
+  position: absolute;
+  width: 200px;
+  z-index: 2;
+}
+
+.patasLeft {
+  left: 0;
+  top: 100px;
+}
+
+.patasRight {
+  right: 0;
+}
+
+/* ajuste específico do gato */
+.classe-cat .patasLeft {
+  top: 50px;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media screen and (max-width: 1170px) {
+.classe-dog,
+.classe-cat {
+  width: 455px;
+  padding: 40px;
+}
+
+.header nav a{
+   color: red;
+   z-index: 3;
+}
+  
+  
+   .container h2 {
+    max-width: 100%;
+  }
+
+  .dog1{
+    width: 100px;
+  }
+
+    .patasLeft {
+    display: none;
+  }
+
+}
+
+@media screen and (max-width: 600px){
+  
+}

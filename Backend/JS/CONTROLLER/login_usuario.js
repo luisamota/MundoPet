@@ -32,9 +32,9 @@ btnLogin.addEventListener("click", function (event) {
     .then(dados => {
         console.log("Login realizado:", dados);
 
-        localStorage.setItem("token", dados.token);
-        localStorage.setItem("tipo", dados.tipo);        
-        localStorage.setItem("nomePet", dados.nomePet);  
+        sessionStorage.setItem("token", dados.token);  // ← mudou
+        sessionStorage.setItem("tipo", dados.tipo);    // ← mudou
+        sessionStorage.setItem("nomePet", dados.nomePet); // ← mudou
 
         alert("Login realizado com sucesso!");            
         //window.location.href = "index.html";

@@ -49,7 +49,7 @@ exports.login = async (email, senha) => {
     if (!senhaOk) throw new Error('Senha incorreta');
 
     const token = jwt.sign(
-        { id: usuario.id_usuarios, tipo: 'usuario' },
+        { id: usuario.id_usuarios, tipo: 'usuario', nome: usuario.nome_usuario }, // ← adicionado nome
         process.env.JWT_SECRET,
         { expiresIn: '8h' }
     );
@@ -70,7 +70,7 @@ exports.loginAdmin = async (email_admin, senha_admin) => {
     if (!senhaOk) throw new Error('Senha incorreta');
 
     const token = jwt.sign(
-        { id: admin.id_admin, tipo: 'admin' },
+        { id: admin.id_admin, tipo: 'admin', nome: admin.nome_admin }, // ← adicionado nome
         process.env.JWT_SECRET,
         { expiresIn: '8h' }
     );

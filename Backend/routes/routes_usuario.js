@@ -3,7 +3,7 @@ const router = express.Router();
 
 const usuarioController = require("../JS/CONTROLLER/usuario_controller");
 const verificarAdmin = require('../middleware/verificaradmin');
-const verificarToken = require('../middleware/verificarToken'); // ← importa o middleware
+const verificarToken = require('../middleware/verificar_token'); // ← importa o middleware
 
 router.post("/cadastrar", usuarioController.cadastroUsuario);
 router.post("/admin/cadastro", usuarioController.cadastroAdmin);

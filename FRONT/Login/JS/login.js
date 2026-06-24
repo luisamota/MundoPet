@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const senha = document.getElementById("password").value;
 
             try {
-                const resposta = await fetch(`${baseUrl}/usuario/login`, {
+                const resposta = await fetch(`${baseUrl}login`, { // ← corrigido
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email, senha })
@@ -39,12 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-                localStorage.setItem("token", dados.token);
-                localStorage.setItem("id_usuarios", dados.id_usuarios);
-                localStorage.setItem("nomePet", dados.nomePet);
+                sessionStorage.setItem("token", dados.token);       // ← corrigido
+                sessionStorage.setItem("id_usuarios", dados.id_usuarios); // ← corrigido
+                sessionStorage.setItem("nomePet", dados.nomePet);   // ← corrigido
 
-
-                    window.location.href = "../../index.html";
+                window.location.href = "../../index.html";
 
             } catch (erro) {
                 console.error("Erro:", erro);

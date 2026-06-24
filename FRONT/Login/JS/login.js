@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.setItem("id_usuarios", dados.id_usuarios);
                 localStorage.setItem("nomePet", dados.nomePet);
 
-                window.location.href = "index.html";
+                window.location.href = "../../index.js";
 
             } catch (erro) {
                 console.error("Erro:", erro);

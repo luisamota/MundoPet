@@ -23,3 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+if (btnClose){
+    btnClose.addEventListener("click", () =>{
+        window.location.href = "/FRONT/index.html"
+    })
+}

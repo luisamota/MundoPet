@@ -1,4 +1,4 @@
-import { baseUrl } from './config.js';
+const baseUrl = "https://mundopet.onrender.com/"
 
 function validarEmail(email) {
     const valor = email.trim();
@@ -83,7 +83,7 @@ btnCadastrar.addEventListener("click", function (event) {
         senha: frmCadastro.querySelector("#confirm-password").value
     };
 
-    fetch(`${baseUrl}usuario/cadastrar`, {
+    fetch(`${baseUrl}/cadastrar`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(usuario)

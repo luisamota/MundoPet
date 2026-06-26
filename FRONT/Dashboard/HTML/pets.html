@@ -6,7 +6,6 @@
     <title>Pets Cadastrados - PetShop</title>
     <link rel="stylesheet" href="../CSS/dashboard.css">
     <link rel="stylesheet" href="../CSS/tabelas.css">
-    <script src="../modal.js" defer></script>
     <script src="../pets.js" defer></script> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
@@ -20,11 +19,9 @@
             <a href="dashboard.html" class="menu-item" style="text-decoration: none; color: inherit; display: block;">
                 <i class="fa-solid fa-table-cells"></i> Dashboard
             </a>
-            
             <a href="pets.html" class="menu-item active" style="text-decoration: none; color: inherit; display: block;">
                 <i class="fa-solid fa-paw"></i> Pets
             </a>
-            
             <div class="menu-item">
                 <i class="fa-solid fa-calendar"></i> Agendamentos
             </div>
@@ -46,13 +43,14 @@
             </div>
             <div class="icons">
                 <i class="fa-solid fa-bell"></i>
-                <div class="profile">👤 Admin</div>
+                <div class="profile">
+                    👤 <span class="user-profile-name">Carregando...</span>
+                </div>
             </div>
         </div>
 
         <div class="page-header">
             <h1>Pets Cadastrados</h1>
-            <button class="btn-primary" id="newPetBtn">+ Novo Pet</button>
         </div>
 
         <div class="full-table-box">
@@ -68,50 +66,7 @@
                     </tr>
                 </thead>
                 <tbody id="lista-pets-body">
-                    <tr>
-                        <td>Ana Silva</td>
-                        <td>ana.silva@email.com</td>
-                        <td><strong>Bob</strong></td>
-                        <td><span class="type-badge dog">Cachorro</span></td>
-                        <td>Golden Retriever</td>
-                        <td class="text-center">
-                            <button class="action-btn" title="Editar" data-id="1"><i class="fa-solid fa-pen"></i></button>
-                            <button class="action-btn delete" title="Excluir" data-id="1"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Pedro Santos</td>
-                        <td>pedro.s@email.com</td>
-                        <td><strong>Luna</strong></td>
-                        <td><span class="type-badge cat">Gato</span></td>
-                        <td>Siamês</td>
-                        <td class="text-center">
-                            <button class="action-btn" title="Editar" data-id="2"><i class="fa-solid fa-pen"></i></button>
-                            <button class="action-btn delete" title="Excluir" data-id="2"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Carlos Mendes</td>
-                        <td>carlos.m@email.com</td>
-                        <td><strong>Thor</strong></td>
-                        <td><span class="type-badge dog">Cachorro</span></td>
-                        <td>Bulldog Francês</td>
-                        <td class="text-center">
-                            <button class="action-btn" title="Editar" data-id="3"><i class="fa-solid fa-pen"></i></button>
-                            <button class="action-btn delete" title="Excluir" data-id="3"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                     <tr>
-                        <td>Marina Costa</td>
-                        <td>marina.c@email.com</td>
-                        <td><strong>Mia</strong></td>
-                        <td><span class="type-badge cat">Gato</span></td>
-                        <td>Persa</td>
-                        <td class="text-center">
-                            <button class="action-btn" title="Editar" data-id="4"><i class="fa-solid fa-pen"></i></button>
-                            <button class="action-btn delete" title="Excluir" data-id="4"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
+                    <!-- preenchido pelo pets.js -->
                 </tbody>
             </table>
         </div>
@@ -119,35 +74,26 @@
     </div>
 </div>
 
-<div class="modal" id="petModal">
+<!-- Modal Editar -->
+<div class="modal" id="modalEditar" style="display:none;">
     <div class="modal-content">
         <div class="modal-header">
-            <h2>Cadastrar Novo Pet</h2>
-            <button id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+            <h2>Editar Usuário</h2>
+            <button id="fecharModalEditar"><i class="fa-solid fa-xmark"></i></button>
         </div>
+        <form class="pet-form" id="formEditar">
+            <input type="hidden" id="editId">
 
-        <form class="pet-form" id="formPet">
             <h3>Informações do Tutor</h3>
-            <input type="text" id="tutorNome" placeholder="Nome do tutor" required>
-            <input type="tel" id="tutorTelefone" placeholder="Telefone">
-            <input type="email" id="tutorEmail" placeholder="E-mail">
+            <input type="text" id="editNome" placeholder="Nome do tutor" required>
+            <input type="email" id="editEmail" placeholder="E-mail" required>
 
             <h3>Informações do Pet</h3>
-            <input type="text" id="petNome" placeholder="Nome do pet" required>
-            <input type="text" id="petEspecie" placeholder="Espécie (ex: Cachorro, Gato)" required>
-            <input type="text" id="petRaca" placeholder="Raça" required>
-            
-            <select id="petSexo" required>
-                <option value="">Sexo</option>
-                <option value="Macho">Macho</option>
-                <option value="Fêmea">Fêmea</option>
-            </select>
+            <input type="text" id="editNomePet" placeholder="Nome do pet" required>
+            <input type="text" id="editEspecie" placeholder="Espécie" required>
+            <input type="text" id="editRaca" placeholder="Raça" required>
 
-            <input type="number" id="petIdade" placeholder="Idade">
-            <input type="number" step="0.1" id="petPeso" placeholder="Peso (kg)">
-            <textarea id="petObs" placeholder="Observações"></textarea>
-
-            <button type="submit">Cadastrar Pet</button>
+            <button type="submit">Salvar alterações</button>
         </form>
     </div>
 </div>

@@ -1,1 +1,1 @@
-export const baseUrl = "https://mundopet.onrender.com";
+export const baseUrl = "https://mundopet.onrender.com/";

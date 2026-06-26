@@ -87,7 +87,7 @@ btnCadastrar.addEventListener("click", function (event) {
     fetch(`${baseUrl}cadastrar`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify()
+        body: JSON.stringify(usuario)
     })
     .then(async response => {
         if (!response.ok) {

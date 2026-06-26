@@ -68,6 +68,7 @@ btnCadastrar.addEventListener("click", function (event) {
     }
 
     const especieSalva = localStorage.getItem("especieSelecionada");
+    console.log(especieSalva)
     if (!especieSalva) {
         alert("Por favor, selecione se o seu pet é um cachorro ou um gato antes de preencher o cadastro.");
         window.location.href = "../HTML/registerCatDog.html";

@@ -1,5 +1,7 @@
 @import url(https://fonts.google.com/specimen/Lilita+One?selected=Material+Symbols+Outlined:dashboard:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%231f1f1f&preview.layout=grid&preview.script=Latn&query=Montserrat);
 @import url(https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap);
+@import url('https://fonts.googleapis.com/css2?family=Kavoon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;700&display=swap');
 
 * {
     margin: 0;
@@ -16,16 +18,46 @@ nav ul {
 }
 
 nav ul a {
-    font-family: 'Lilita One', cursive;
+    font-family: 'Poppins', sans-serif;
     text-decoration: none;
     color: black;
     font-size: 20px;
 }
 
-.container {
+.container-geral{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px 60px 50px 60px;
+    gap: 50px;
+}
+
+.container-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+
+.img-card {
+    width: 450px;
+    height: 400px;
+    border-radius: 30px;
+}
+
+
+/* .container {
     transform: translateY(50%);
     margin-left: 200px;
-}
+} */
 
 h2 {
     font-family: 'Luckiest Guy', cursive;
@@ -53,21 +85,14 @@ p {
     color: white;
 }
 
-#CachorroMolhado {
+/* #CachorroMolhado {
     justify-content: flex-end;
     display: flex;
     transform: translateY(-30%);
     z-index: 1;
     position: relative;
-}
+} */
 
-#AuauMolhado {
-    width: 450px;
-    height: auto;
-    border-radius: 30px;
-    margin-right: 45px;
-
-}
 
 #Agua {
     justify-content: flex-end;
@@ -82,20 +107,17 @@ p {
     height: auto;
 }
 
-#Veterinario {
+/* #Veterinario {
     border-radius: 30px;
     transform: translateY(-80%);
     margin-left: 60px;
-}
+} */
 
-#imgVet {
-    width: 600px;
-    height: auto;
-}
 
-.container2 {
+
+/* .container2 {
     transform: translate(50%, -290%);
-}
+} */
 
 #h2Vet {
     color: #58AC76;
@@ -142,12 +164,6 @@ p {
     border-radius: 20px;
 }
 
-#imgAdestramento {
-    justify-content: flex-end;
-    display: flex; 
-    transform: translateY(-100%);
-    margin-right: 60px;
-}
 
 body { 
     overflow-x: hidden; /* impede o scroll no x */
@@ -163,6 +179,98 @@ footer {
     margin-top: 10px;
 }
 
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+background:#0B4B99;
+width:100%;
+padding:20px 50px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+position:relative;
+z-index:10;
+
+}
+
+/* Logo */
+
+.header h1{
+
+position:static;
+z-index:2;
+
+}
+
+.header h1 a{
+
+font-family:'Poppins',sans-serif;
+font-size:2rem;
+color:white;
+text-decoration:none;
+
+}
+
+/* Navbar centralizada */
+
+.navegacao{
+position:absolute;
+
+left:50%;
+transform:translateX(-50%);
+
+z-index:2;
+
+}
+
+.navegacao ul{
+font-family: 'Poppins', sans-serif;
+
+display:flex;
+gap:60px;
+
+list-style:none;
+
+}
+
+.navegacao a{
+
+text-decoration:none;
+color:white;
+
+font-size:1rem;
+font-weight:500;
+
+transition:.3s;
+
+}
+
+.navegacao a:hover{
+
+opacity:.7;
+
+}
+/* Ícones — lado direito */
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 2;
+}
+
+.header-icons a {
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
 
 /* mobal */
 
@@ -172,13 +280,13 @@ footer {
         margin-left: 20px;
     }
 
-    #CachorroMolhado {
+    /* #CachorroMolhado {
         justify-content: flex-end;
         display: flex;
         transform: translateY(-30%);
         z-index: 1;
         position: relative;
-    }
+    } */
 
     #AuauMolhado {
         width: 300px;

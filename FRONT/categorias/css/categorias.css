@@ -224,62 +224,180 @@ opacity:.7;
 /* =========================
    RESPONSIVO
 ========================= */
-@media screen and (max-width: 1170px) {
+
+@media screen and (max-width: 1170px){
+
   .classe-dog,
-  .classe-cat {
-    padding: 40px;
+  .classe-cat{
+    padding:50px;
+    height:auto;
+    min-height:500px;
   }
 
-  .container h2 {
-    max-width: 100%;
+  .dog1{
+    width:60%;
+    right:0;
+    top:auto;
+    bottom:0;
   }
 
-  .dog1 {
-    width: 100px;
+  .cat1{
+    width:55%;
+    margin-left:0;
+    bottom:0;
   }
 
-  .patasLeft {
-    display: none;
-  }
 }
 
-@media screen and (max-width: 768px) {
-  .header {
-    padding: 14px 20px;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
 
-  .navegacao {
-    position: static;
-    transform: none;
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    display: flex;
-  }
+@media screen and (max-width:768px){
 
-  .navegacao ul {
-    gap: 24px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+/* HEADER */
 
-  .header-icons {
-    order: 2;
-  }
+.header{
+padding:15px 20px;
+flex-wrap:wrap;
+gap:15px;
 }
 
-@media screen and (max-width: 600px) {
-  .header h1 a {
-    font-size: 1.2rem;
-  }
+.header h1{
+width:100%;
+text-align:center;
+}
 
-  .navegacao ul {
-    gap: 16px;
-  }
+.header h1 a{
+font-size:1.6rem;
+}
 
-  .navegacao a {
-    font-size: .9rem;
-  }
+.navegacao{
+
+position:static;
+transform:none;
+width:100%;
+
+display:flex;
+justify-content:center;
+
+}
+
+.navegacao ul{
+
+gap:20px;
+flex-wrap:wrap;
+justify-content:center;
+
+}
+
+.header-icons{
+
+width:100%;
+justify-content:center;
+
+}
+
+
+/* SEÇÕES */
+
+.classe-dog,
+.classe-cat{
+
+padding:40px 25px;
+height:auto;
+
+display:flex;
+flex-direction:column;
+
+text-align:center;
+
+overflow:hidden;
+
+}
+
+.classe-dog h2,
+.classe-cat h2{
+
+font-size:30px;
+
+}
+
+.classe-dog p,
+.classe-cat p{
+
+font-size:.95rem;
+max-width:100%;
+
+}
+
+
+/* IMAGENS */
+
+.dog1,
+.cat1{
+
+position:relative;
+
+width:90%;
+max-width:350px;
+
+margin-top:30px;
+
+top:auto;
+bottom:auto;
+left:auto;
+right:auto;
+
+}
+
+
+/* PATAS */
+
+.patasLeft,
+.patasRight{
+
+width:120px;
+opacity:.15;
+
+}
+
+}
+
+
+
+@media screen and (max-width:480px){
+
+.header h1 a{
+font-size:1.3rem;
+}
+
+.navegacao a{
+font-size:.85rem;
+}
+
+.classe-dog h2,
+.classe-cat h2{
+
+font-size:24px;
+
+}
+
+.classe-dog p,
+.classe-cat p{
+
+font-size:.85rem;
+
+}
+
+.dog1,
+.cat1{
+
+width:100%;
+max-width:280px;
+
+}
+
+.patasLeft,
+.patasRight{
+display:none;
+}
+
 }

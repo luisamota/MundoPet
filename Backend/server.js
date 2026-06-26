@@ -9,7 +9,7 @@ const routesUsuario = require("./routes/routes_usuario");
 app.use(express.json());
 app.use(cors());
 
-app.use("/usuario", routesUsuario);
+app.use("/", routesUsuario);
 
 
 app.listen(3000, () => {

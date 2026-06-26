@@ -74,3 +74,13 @@ exports.excluirUsuario = async (req, res) => {
         });
     }
 };
+
+exports.editarUsuario = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const resultado = await service.editar(id, req.body);
+        res.status(200).json(resultado);
+    } catch (err) {
+        res.status(400).json({ erro: err.message });
+    }
+};

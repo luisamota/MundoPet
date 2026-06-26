@@ -25,28 +25,53 @@ document.addEventListener("DOMContentLoaded", () => {
             const email = document.getElementById("email").value;
             const senha = document.getElementById("password").value;
 
+            // ─── TENTA LOGIN USUÁRIO ───────────────────────────────────
             try {
-                const resposta = await fetch(`${baseUrl}login`, { // ← corrigido
+                const respostaUsuario = await fetch(`${baseUrl}login`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email, senha })
                 });
 
-                const dados = await resposta.json();
+                const dadosUsuario = await respostaUsuario.json();
 
-                if (!resposta.ok) {
-                    alert(dados.erro || "Erro ao fazer login.");
+                if (respostaUsuario.ok) {
+                    sessionStorage.setItem("token", dadosUsuario.token);
+                    sessionStorage.setItem("id_usuarios", dadosUsuario.id_usuarios);
+                    sessionStorage.setItem("nomePet", dadosUsuario.nomePet);
+
+                    window.location.href = "../../index.html";
                     return;
                 }
 
-                sessionStorage.setItem("token", dados.token);       // ← corrigido
-                sessionStorage.setItem("id_usuarios", dados.id_usuarios); // ← corrigido
-                sessionStorage.setItem("nomePet", dados.nomePet);   // ← corrigido
+            } catch (erro) {
+                console.error("Erro ao tentar login usuário:", erro);
+            }
 
-                window.location.href = "../../index.html";
+            // ─── SE FALHOU, TENTA LOGIN ADMIN ─────────────────────────
+            try {
+                const respostaAdmin = await fetch(`${baseUrl}admin/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email_admin: email, senha_admin: senha })
+                });
+
+                const dadosAdmin = await respostaAdmin.json();
+
+                if (respostaAdmin.ok) {
+                    sessionStorage.setItem("tokenAdmin", dadosAdmin.token);
+                    sessionStorage.setItem("nome_admin", dadosAdmin.nome_admin);
+                    sessionStorage.setItem("id_admin", dadosAdmin.id_admin);
+
+                    window.location.href = "../../Dashboard/HTML/dashboard.html";
+                    return;
+                }
+
+                // Se os dois falharam
+                alert(dadosAdmin.erro || "Email ou senha incorretos.");
 
             } catch (erro) {
-                console.error("Erro:", erro);
+                console.error("Erro ao tentar login admin:", erro);
                 alert("Erro de conexão com o servidor.");
             }
         });

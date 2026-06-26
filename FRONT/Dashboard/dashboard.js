@@ -1,5 +1,19 @@
-// dashboard.js - Exclusivo do calendário da tela inicial
+// dashboard.js
 
+// ─── PROTEÇÃO DE ROTA + NOME DO ADMIN ─────────────────────────────────────────
+const nomeAdmin = sessionStorage.getItem("nome_admin");
+
+if (!nomeAdmin) {
+    window.location.href = "../../Login/HTML/login.html";
+} else {
+    const userProfileName = document.querySelector(".user-profile-name");
+    const welcomeUserName = document.getElementById("welcomeUserName");
+
+    if (userProfileName) userProfileName.textContent = nomeAdmin;
+    if (welcomeUserName) welcomeUserName.textContent = nomeAdmin;
+}
+
+// ─── CALENDÁRIO ───────────────────────────────────────────────────────────────
 const monthYear = document.getElementById("monthYear");
 const calendarDays = document.getElementById("calendarDays");
 const prev = document.getElementById("prev");
@@ -7,8 +21,7 @@ const next = document.getElementById("next");
 let date = new Date();
 
 function renderCalendar() {
-    // Segurança: se não achar o calendário na tela, não faz nada
-    if(!calendarDays) return; 
+    if (!calendarDays) return;
 
     calendarDays.innerHTML = "";
     const year = date.getFullYear();
@@ -32,7 +45,7 @@ function renderCalendar() {
         const div = document.createElement("div");
         div.innerText = day;
         const today = new Date();
-        
+
         if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
             div.classList.add("today");
         }
@@ -40,17 +53,16 @@ function renderCalendar() {
     }
 }
 
-// Segurança: só adiciona o clique se os botões prev/next existirem
-if(prev && next) {
+if (prev && next) {
     prev.onclick = () => {
         date.setMonth(date.getMonth() - 1);
         renderCalendar();
-    }
-    
+    };
+
     next.onclick = () => {
         date.setMonth(date.getMonth() + 1);
         renderCalendar();
-    }
+    };
 }
 
 renderCalendar();

@@ -39,6 +39,19 @@ exports.excluir = async (id) => {
     return resultado;
 };
 
+exports.editar = async (id, usuario) => {
+    const sql = "UPDATE Usuarios SET email = ?, nome_usuario = ?, nomePet = ?, especie = ?, raca = ? WHERE id_usuarios = ?";
+    const [resultado] = await conexao.promise().query(sql, [
+        usuario.email,
+        usuario.nome_usuario,
+        usuario.nomePet,
+        usuario.especie,
+        usuario.raca,
+        id
+    ]);
+    return resultado;
+};
+
 exports.cadastroAdmin = async (admin) => {
     const sql = "INSERT INTO Admin (email_admin, nome_admin, senha_admin) VALUES (?, ?, ?)";
     

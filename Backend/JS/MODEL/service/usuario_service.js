@@ -95,3 +95,18 @@ exports.excluir = async (id) => {
 
     return { mensagem: 'Usuário deletado com sucesso!' };
 };
+
+exports.editar = async (id, dados) => {
+    const usuario = await repo.buscarPorId(id);
+    if (!usuario) throw new Error('Usuário não encontrado');
+
+    await repo.editar(id, {
+        email: dados.email || usuario.email,
+        nome_usuario: dados.nome_usuario || usuario.nome_usuario,
+        nomePet: dados.nomePet || usuario.nomePet,
+        especie: dados.especie || usuario.especie,
+        raca: dados.raca || usuario.raca
+    });
+
+    return { mensagem: 'Usuário atualizado com sucesso!' };
+};

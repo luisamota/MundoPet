@@ -11,5 +11,6 @@ router.post("/login", usuarioController.login);
 router.post("/admin/login", usuarioController.loginAdmin);
 router.get("/", verificarToken, usuarioController.listarTodos);           // ← protegida
 router.delete("/admin/excluir/:id", verificarAdmin, usuarioController.excluirUsuario);
+router.put("/admin/editar/:id", verificarAdmin, usuarioController.editarUsuario);
 
 module.exports = router;

@@ -1,0 +1,103 @@
+/* Cabeçalho da página (Título + Botão de ação) */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background-color: #6fb3f6; /* Azul do seu layout */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #589ce0;
+}
+
+/* Container da Tabela Completa */
+.full-table-box {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    overflow-x: auto; /* Adiciona scroll horizontal se a tela for pequena */
+}
+
+/* Estilização da Tabela */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+.data-table th, .data-table td {
+    padding: 15px 10px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+    color: #444;
+    font-size: 14px;
+}
+
+.data-table th {
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* Efeito ao passar o mouse na linha */
+.data-table tbody tr:hover {
+    background-color: #f9fbff;
+}
+
+/* Tags de Espécie (Gato/Cachorro) */
+.type-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.type-badge.dog {
+    background-color: #e3f2fd; /* Fundo azul bem claro */
+    color: #1976d2; /* Texto azul escuro */
+}
+
+.type-badge.cat {
+    background-color: #fce4ec; /* Fundo rosa bem claro */
+    color: #c2185b; /* Texto rosa escuro */
+}
+
+/* Botões de Ação na Tabela (Editar/Excluir) */
+.text-center {
+    text-align: center !important;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: #a0a0a0;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 5px;
+    transition: color 0.2s;
+}
+
+.action-btn:hover {
+    color: #6fb3f6;
+}
+
+.action-btn.delete:hover {
+    color: #ff5252;
+}

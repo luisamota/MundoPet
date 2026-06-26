@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - PetShop</title>
+    <link rel="stylesheet" href="../CSS/dashboard.css">
+    <script src="../auth.js" defer></script>
+    <script src="../modal.js" defer></script>
+    <script src="../dashboard.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="sidebar">
+            <div class="logo">
+                🐾 Mundo Pet
+            </div>
+
+            <div class="menu">
+                <a href="dashboard.html" class="menu-item active" style="text-decoration: none; color: inherit; display: block;">
+                    <i class="fa-solid fa-table-cells"></i> Dashboard
+                </a>
+
+                <a href="pets.html" class="menu-item" style="text-decoration: none; color: inherit; display: block;">
+                    <i class="fa-solid fa-paw"></i> Pets
+                </a>
+
+                <div class="menu-item">
+                    <i class="fa-solid fa-calendar"></i> Agendamentos
+                </div>
+
+                <div class="menu-item">
+                    <i class="fa-solid fa-chart-column"></i> Relatórios
+                </div>
+
+                <div class="menu-item">
+                    <i class="fa-solid fa-gear"></i> Configurações
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <div class="top">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Pesquisar pet, tutor ou serviço">
+                </div>
+
+                <div class="icons">
+                    <i class="fa-solid fa-bell"></i>
+                    <div class="profile">
+                        👤 <span class="user-profile-name">Carregando...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="welcome-header">
+                <h1>Bem-vindo de volta, <span id="welcomeUserName">...</span>! 👋</h1>
+                <p>Aqui está o resumo do seu Mundo Pet hoje.</p>
+            </div>
+
+            <div class="alerts">
+                <div class="alert red">3 consultas atrasadas</div>
+                <div class="alert yellow">5 vacinas próximas</div>
+                <div class="alert green">12 confirmados</div>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <h2>327</h2>
+                    <p>Pets cadastrados</p>
+                </div>
+                <div class="card">
+                    <h2>16</h2>
+                    <p>Consultas hoje</p>
+                </div>
+                <div class="card">
+                    <h2>R$19.587</h2>
+                    <p>Receita do mês</p>
+                </div>
+                <div class="card">
+                    <h2>58</h2>
+                    <p>Banhos realizados</p>
+                </div>
+            </div>
+
+            <div class="bottom">
+                <div class="table-box">
+                    <h3>Pacientes recentes</h3>
+                    <table>
+                        <tr>
+                            <th>Pet</th>
+                            <th>Tutor</th>
+                            <th>Serviço</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td>Bob</td>
+                            <td>Ana</td>
+                            <td>Banho</td>
+                            <td><span class="status progress">Em andamento</span></td>
+                        </tr>
+                        <tr>
+                            <td>Luna</td>
+                            <td>Pedro</td>
+                            <td>Consulta</td>
+                            <td><span class="status done">Concluído</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <button id="prev"><i class="fa-solid fa-chevron-left"></i></button>
+                        <h3 id="monthYear"></h3>
+                        <button id="next"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+
+                    <div class="weekdays">
+                        <div>D</div>
+                        <div>S</div>
+                        <div>T</div>
+                        <div>Q</div>
+                        <div>Q</div>
+                        <div>S</div>
+                        <div>S</div>
+                    </div>
+
+                    <div class="calendar-days" id="calendarDays"></div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="newPetBtn">+ Novo Pet</button>
+                <button>+ Agendar</button>
+                <button>+ Pagamento</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal" id="petModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Cadastrar Novo Pet</h2>
+                <button id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form class="pet-form" id="formPet">
+                <h3>Informações do Tutor</h3>
+                <input type="text" id="tutorNome" placeholder="Nome do tutor" required>
+                <input type="tel" id="tutorTelefone" placeholder="Telefone">
+                <input type="email" id="tutorEmail" placeholder="E-mail">
+
+                <h3>Informações do Pet</h3>
+                <input type="text" id="petNome" placeholder="Nome do pet" required>
+                <input type="text" id="petEspecie" placeholder="Espécie (ex: Cachorro, Gato)" required>
+                <input type="text" id="petRaca" placeholder="Raça" required>
+                
+                <select id="petSexo" required>
+                    <option value="">Sexo</option>
+                    <option value="Macho">Macho</option>
+                    <option value="Fêmea">Fêmea</option>
+                </select>
+
+                <input type="number" id="petIdade" placeholder="Idade">
+                <input type="number" step="0.1" id="petPeso" placeholder="Peso (kg)">
+                <textarea id="petObs" placeholder="Observações"></textarea>
+
+                <button type="submit">Cadastrar Pet</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

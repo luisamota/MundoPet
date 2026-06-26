@@ -1,159 +1,56 @@
-// MENU
+// dashboard.js - Exclusivo do calendário da tela inicial
 
-const menuItems=document.querySelectorAll(".menu-item");
+const monthYear = document.getElementById("monthYear");
+const calendarDays = document.getElementById("calendarDays");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+let date = new Date();
 
-menuItems.forEach(item=>{
+function renderCalendar() {
+    // Segurança: se não achar o calendário na tela, não faz nada
+    if(!calendarDays) return; 
 
-item.addEventListener("click",()=>{
+    calendarDays.innerHTML = "";
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+    const months = [
+        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+    ];
 
-document
-.querySelector(".active")
-.classList.remove("active");
+    if (monthYear) {
+        monthYear.innerText = `${months[month]} ${year}`;
+    }
 
-item.classList.add("active");
+    for (let i = 0; i < firstDay; i++) {
+        calendarDays.innerHTML += "<div></div>";
+    }
 
-});
-
-});
-
-
-// CALENDÁRIO
-
-const monthYear=
-document.getElementById("monthYear");
-
-const calendarDays=
-document.getElementById("calendarDays");
-
-const prev=
-document.getElementById("prev");
-
-const next=
-document.getElementById("next");
-
-let date=new Date();
-
-
-function renderCalendar(){
-
-calendarDays.innerHTML="";
-
-const year=date.getFullYear();
-const month=date.getMonth();
-
-const firstDay=
-new Date(year,month,1).getDay();
-
-const lastDate=
-new Date(year,month+1,0).getDate();
-
-const months=[
-
-"Janeiro",
-"Fevereiro",
-"Março",
-"Abril",
-"Maio",
-"Junho",
-"Julho",
-"Agosto",
-"Setembro",
-"Outubro",
-"Novembro",
-"Dezembro"
-
-];
-
-monthYear.innerText=
-`${months[month]} ${year}`;
-
-
-for(let i=0;i<firstDay;i++){
-
-calendarDays.innerHTML+="<div></div>";
-
+    for (let day = 1; day <= lastDate; day++) {
+        const div = document.createElement("div");
+        div.innerText = day;
+        const today = new Date();
+        
+        if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+            div.classList.add("today");
+        }
+        calendarDays.appendChild(div);
+    }
 }
 
-
-for(let day=1;day<=lastDate;day++){
-
-const div=
-document.createElement("div");
-
-div.innerText=day;
-
-const today=new Date();
-
-if(
-day===today.getDate() &&
-month===today.getMonth() &&
-year===today.getFullYear()
-){
-
-div.classList.add("today");
-
-}
-
-calendarDays.appendChild(div);
-
-}
-
-}
-
-
-prev.onclick=()=>{
-
-date.setMonth(
-date.getMonth()-1
-);
-
-renderCalendar();
-
-}
-
-
-next.onclick=()=>{
-
-date.setMonth(
-date.getMonth()+1
-);
-
-renderCalendar();
-
+// Segurança: só adiciona o clique se os botões prev/next existirem
+if(prev && next) {
+    prev.onclick = () => {
+        date.setMonth(date.getMonth() - 1);
+        renderCalendar();
+    }
+    
+    next.onclick = () => {
+        date.setMonth(date.getMonth() + 1);
+        renderCalendar();
+    }
 }
 
 renderCalendar();
-
-const modal=
-document.getElementById("petModal");
-
-const newPetBtn=
-document.getElementById("newPetBtn");
-
-const closeModal=
-document.getElementById("closeModal");
-
-
-newPetBtn.addEventListener("click",()=>{
-
-modal.style.display="flex";
-
-});
-
-
-closeModal.addEventListener("click",()=>{
-
-modal.style.display="none";
-
-});
-
-
-window.addEventListener("click",(e)=>{
-
-if(e.target===modal){
-
-modal.style.display="none";
-
-}
-
-});

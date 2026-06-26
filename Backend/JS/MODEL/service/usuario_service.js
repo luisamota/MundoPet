@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 
 exports.cadastrar = async (email, nome_usuario, nomePet, especie, raca, senha) => {
     const especieAnimal = ['cachorro', 'gato'];
-    console.log(localStorage.getItem("especieSelecionada"))
 
     // if (!especie || !especieAnimal.includes(especie.toLowerCase())) {
     //     throw new Error('Por favor, selecione se o seu pet é um cachorro ou um gato.');
